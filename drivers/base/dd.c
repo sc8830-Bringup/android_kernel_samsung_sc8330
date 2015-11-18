@@ -319,6 +319,7 @@ probe_failed:
 	driver_sysfs_remove(dev);
 	dev->driver = NULL;
 	dev_set_drvdata(dev, NULL);
+	pm_runtime_reinit(dev);
 
 	if (ret == -EPROBE_DEFER) {
 		/* Driver requested deferred probing */
@@ -525,6 +526,8 @@ static void __device_release_driver(struct device *dev)
 		devres_release_all(dev);
 		dev->driver = NULL;
 		dev_set_drvdata(dev, NULL);
+		pm_runtime_reinit(dev);
+
 		klist_remove(&dev->p->knode_driver);
 		if (dev->bus)
 			blocking_notifier_call_chain(&dev->bus->p->bus_notifier,
