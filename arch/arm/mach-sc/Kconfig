@@ -17,6 +17,8 @@ config  ARCH_SCX35
 	select ARCH_HAS_CPUFREQ
 	select NEED_MACH_IO_H
 	select ARM_HAS_SG_CHAIN
+	select HAVE_ARCH_MMAP_RND_BITS
+	select HAVE_ARCH_MMAP_RND_COMPAT_BITS
 
 config ARCH_SCX15
 	bool "scx15 series(dolphin,depend on ARCH_SCX35)"
